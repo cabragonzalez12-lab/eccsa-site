@@ -1,19 +1,22 @@
 # Sitio ECCSA
 
-Landing de una sola página para Electro Control Coatzacoalcos (ECCSA). El repo completo es
-lo que debe quedar dentro de `public_html/eccsa` en Hostinger.
+Landing de una sola página para Electro Control Coatzacoalcos (ECCSA).
 
-## Antes de publicar: reemplazar el dominio
+Actualmente en producción en **https://eccsa-site.vercel.app**, con repo en GitHub
+(`cabragonzalez12-lab/eccsa-site`) enlazado a un proyecto de Vercel: cada `git push` a `main`
+despliega solo. El canonical, `og:url`, `og:image` y `sitemap.xml` ya apuntan a esa URL.
 
-El archivo usa `https://tudominio.com/eccsa/` como marcador en 4 lugares. Reemplázalo por la
-URL real antes del primer deploy:
+Este mismo repo también sirve para subir a Hostinger como subcarpeta (`public_html/eccsa`) si se
+prefiere ese camino — ver la sección de Git en hPanel más abajo.
 
-- [index.html](index.html): `<link rel="canonical">`, `og:url`, `og:image` (líneas ~8, 15, 16)
+## Si cambia el dominio (Hostinger o dominio propio)
+
+Si más adelante el sitio se mueve a `tudominio.com/eccsa/` o a otra URL, actualiza:
+
+- [index.html](index.html): `<link rel="canonical">`, `og:url`, `og:image`
 - [sitemap.xml](sitemap.xml): `<loc>`
 
-Búsqueda rápida: `grep -rn "tudominio.com" .`
-
-Si la ruta final no es `/eccsa/` sino otra subcarpeta, ajusta esas mismas 4 líneas.
+Búsqueda rápida: `grep -rn "eccsa-site.vercel.app" .`
 
 ## Desplegar con Git en hPanel
 
@@ -33,15 +36,11 @@ alternativa sube el contenido de esta carpeta por el Administrador de archivos d
 
 ## robots.txt y sitemap
 
-Este sitio vive en una subcarpeta, así que no lleva su propio `robots.txt` (los buscadores solo
-leen el de la raíz del dominio). Añade esta línea al `robots.txt` que ya exista en la raíz del
-sitio principal:
-
-```
-Sitemap: https://tudominio.com/eccsa/sitemap.xml
-```
-
-O da de alta `sitemap.xml` directamente en Google Search Console para esa propiedad.
+Como el sitio vive en la raíz de `eccsa-site.vercel.app`, lleva su propio `robots.txt` apuntando a
+`sitemap.xml`. Si en el futuro se mueve a una subcarpeta de otro dominio (por ejemplo
+`tudominio.com/eccsa/`), hay que quitar este `robots.txt` (los buscadores solo leen el de la raíz
+del dominio) y en su lugar añadir la línea `Sitemap: https://tudominio.com/eccsa/sitemap.xml` al
+`robots.txt` del sitio principal, o dar de alta `sitemap.xml` directamente en Search Console.
 
 ## Verificación antes y después de publicar
 
